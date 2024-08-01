@@ -1,6 +1,6 @@
 {
-	"name": "react-tablex",
-	"version": "0.0.1",
+	"name": "react-table-suite",
+	"version": "0.0.2",
 	"description": "A powerful react table component",
 	"main": "dist/index.esm.js",
 	"module": "dist/index.esm.js",
@@ -43,7 +43,7 @@
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/jpranays/react-tablex.git"
+		"url": "https://github.com/jpranays/react-table-suite.git"
 	},
 	"author": "Pranay <pranay1315@gmail.com>",
 	"license": "MIT"
