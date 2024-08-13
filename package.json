@@ -17,7 +17,8 @@
 		"react",
 		"table",
 		"react-table",
-    "tablex"
+		"react-table-suite",
+		"table-suite"
 	],
 	"peerDependencies": {
 		"react": "^16.8.0 || ^17.0.0 || ^18.0.0"
@@ -38,6 +39,9 @@
 		"rollup-plugin-cleanup": "^3.2.1",
 		"rollup-plugin-delete": "^2.0.0",
 		"rollup-plugin-dts": "^6.1.1",
+		"rollup-plugin-peer-deps-external": "^2.2.4",
+		"rollup-plugin-postcss": "^4.0.2",
+		"sass": "^1.77.8",
 		"tslib": "^2.6.3",
 		"typescript": "^5.5.3"
 	},
