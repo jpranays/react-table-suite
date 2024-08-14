@@ -3,15 +3,14 @@
 	display: flex;
 	flex-direction: column;
 	overflow: auto;
-    width: max-content;
+	width: max-content;
 	&.fw {
 		width: 100%;
 	}
 	.react-table-suite-column-container {
 		display: flex;
 		align-items: center;
-        width: max-content;
-        width: 100%;
+		width: 100%;
 		.react-table-suite-column {
 			flex: 1;
 			padding: 10px;
@@ -19,7 +18,75 @@
 			display: flex;
 			justify-content: center;
 			align-items: center;
-            min-width: max-content;
+			min-width: max-content;
+			width: 100%;
+            gap: 5px;
+			.react-table-suite-column-title {
+				max-width: 90%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
+			.react-table-suite-column-icons-wrapper {
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				margin-left: auto;
+				.react-table-suite-column-icons {
+					display: flex;
+					align-items: center;
+					gap: 10px;
+					.sort-icons-container {
+						display: flex;
+						flex-direction: column;
+						gap: 5px;
+						&:not(.active) {
+							visibility: hidden;
+						}
+						.sort-icon-wrapper {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							.sort-icon {
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								height: 12px;
+								width: 12px;
+								&:hover {
+									transform: scale(1.2);
+								}
+								&.active {
+									transform: scale(1.5);
+								}
+                                path{
+                                    fill: #353535;
+                                }
+							}
+						}
+					}
+					.filter-icons-container {
+						.filter-icon-wrapper {
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							.filter-icon {
+								height: 16px;
+								width: 16px;
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								cursor: pointer;
+							}
+						}
+					}
+				}
+			}
+			&:hover {
+				.sort-icons-container {
+					visibility: visible !important;
+				}
+			}
 		}
 	}
 }

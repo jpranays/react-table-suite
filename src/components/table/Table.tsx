@@ -1,5 +1,6 @@
 import React from "react";
 import "./Table.style.scss";
+import { FilterIcon, SortDownIcon, SortUpIcon } from "../../assest/icons";
 
 interface Column {
 	/*
@@ -46,6 +47,11 @@ interface Column {
 
 interface TableProps {
 	/*
+	 * Type of the table
+	 * Default: "static"
+	 */
+	type?: "static" | "dynamic";
+	/*
 	 * Columns of the table
 	 */
 	columns: Column[];
@@ -57,7 +63,7 @@ interface TableProps {
 }
 
 function Table(props: TableProps) {
-	const { columns = [], fullWidth = true } = props;
+	const { columns = [], type = "static", fullWidth = true } = props;
 	return (
 		<div className={`react-table-suite-container ${fullWidth && "fw"}`}>
 			<div className="react-table-suite-column-container">
@@ -80,7 +86,9 @@ function Table(props: TableProps) {
 								{show === true && (
 									<div
 										className="react-table-suite-column"
-										style={{ minWidth: minWidth ? `${minWidth}px` : "max-content" }}
+										style={{
+											minWidth: minWidth ? `${minWidth}px` : "max-content",
+										}}
 									>
 										<div className="react-table-suite-column-title">
 											{title}
@@ -112,67 +120,23 @@ function Table(props: TableProps) {
 										</div> */}
 
 											<div className="react-table-suite-column-icons">
-												{sort?.show !== false && (
+												{sort?.show === true && (
+													// active
 													<div className="sort-icons-container">
-														{/* <VscTriangleUp
-														className={`sort-icon up ${
-															sort?.find(
-																({ name, order }) =>
-																	name === col.key && order === ASCENDING
-															) && ACTIVE
-														} ${
-															sort?.find(
-																({ name, order }) =>
-																	name === col.key && order === DESCENDING
-															) && SEMI_ACTIVE
-														}`}
-														onClick={() => {
-															handleSort(
-																col.key,
-																ASCENDING,
-																sort,
-																setSort,
-																setReset,
-																setTableSorted
-															);
-														}}
-														size={15}
-													/> */}
-
-														{/* <VscTriangleDown
-														className={`sort-icon down ${
-															sort?.find(
-																({ name, order }) =>
-																	name === col.key && order === DESCENDING
-															) && ACTIVE
-														} ${
-															sort?.find(
-																({ name, order }) =>
-																	name === col.key && order === ASCENDING
-															) && SEMI_ACTIVE
-														}`}
-														onClick={() => {
-															handleSort(
-																col.key,
-																DESCENDING,
-																sort,
-																setSort,
-																setReset,
-																setTableSorted
-															);
-														}}
-														size={15}
-													/> */}
+														<div className="sort-icon-wrapper">
+															{/* active */}
+															<SortUpIcon className="sort-icon up" />
+														</div>
+														<div className="sort-icon-wrapper">
+															<SortDownIcon className="sort-icon down" />
+														</div>
 													</div>
 												)}
 												{filter?.show === true ? (
-													// ? filter?.find(
-													// 		({ name, status }) => name === col.key && status
-													//   )
-													// 	? filteredIcon(col, setColumnFilter)
-													// 	: filterIcon(col, setColumnFilter)
 													<div className="filter-icons-container">
-														{/* <span>filter icon</span> */}
+														<div className="filter-icon-wrapper">
+															<FilterIcon className="filter-icon" />
+														</div>
 													</div>
 												) : null}
 											</div>
