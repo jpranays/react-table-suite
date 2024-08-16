@@ -5,7 +5,8 @@
 	overflow: auto;
 	width: max-content;
 	&.fw {
-		width: 100%;
+		// width: 100%;
+		min-width: 100%;
 	}
 	.react-table-suite-column-container {
 		display: flex;
@@ -13,19 +14,26 @@
 		width: 100%;
 		.react-table-suite-column {
 			flex: 1;
-			padding: 10px;
+			padding: 10px 0px;
 			border: 1px solid blue;
 			display: flex;
 			justify-content: center;
 			align-items: center;
-			min-width: max-content;
-			width: 100%;
-            gap: 5px;
+			gap: 5px;
+			max-width: 100%;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
 			.react-table-suite-column-title {
-				max-width: 90%;
+				max-width: 100%;
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
+				font-size: 1.2rem;
+				padding: 0 5px;
+                text-align: center;
+                width: 100%;
+                margin-left: 40px;
 			}
 			.react-table-suite-column-icons-wrapper {
 				display: flex;
@@ -59,13 +67,14 @@
 								&.active {
 									transform: scale(1.5);
 								}
-                                path{
-                                    fill: #353535;
-                                }
+								path {
+									fill: rgba(53, 53, 53, 0.7);
+								}
 							}
 						}
 					}
 					.filter-icons-container {
+						padding-right: 5px;
 						.filter-icon-wrapper {
 							display: flex;
 							justify-content: center;
@@ -86,6 +95,36 @@
 				.sort-icons-container {
 					visibility: visible !important;
 				}
+			}
+		}
+	}
+	.react-table-suite-row-container {
+		display: flex;
+		align-items: center;
+		width: 100%;
+		flex-direction: column;
+		.react-table-suite-row {
+			flex: 1;
+			border: 1px solid green;
+			display: flex;
+			align-items: center;
+			width: 100%;
+			padding: 8px 0px;
+			max-width: 100%;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			overflow: hidden;
+			.react-table-suite-row-data-container {
+				flex: 1;
+				text-align: center;
+				border: 1px solid pink;
+				font-size: 1.2rem;
+				max-width: 100%;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				font-size: 1.2rem;
+				padding: 0 5px;
 			}
 		}
 	}

@@ -44,6 +44,7 @@ interface Column {
 	 */
 	resizable?: boolean;
 }
+type Data = Array<any>;
 
 interface TableProps {
 	/*
@@ -55,6 +56,7 @@ interface TableProps {
 	 * Columns of the table
 	 */
 	columns: Column[];
+	data: Data[];
 	/*
 	 * Span the table to full width
 	 * Default: true
@@ -63,7 +65,7 @@ interface TableProps {
 }
 
 function Table(props: TableProps) {
-	const { columns = [], type = "static", fullWidth = true } = props;
+	const { columns = [], data = [], type = "static", fullWidth = true } = props;
 	return (
 		<div className={`react-table-suite-container ${fullWidth && "fw"}`}>
 			<div className="react-table-suite-column-container">
@@ -87,7 +89,7 @@ function Table(props: TableProps) {
 									<div
 										className="react-table-suite-column"
 										style={{
-											minWidth: minWidth ? `${minWidth}px` : "max-content",
+											minWidth: minWidth ? `${minWidth}px` : "auto",
 										}}
 									>
 										<div className="react-table-suite-column-title">
@@ -112,6 +114,12 @@ function Table(props: TableProps) {
 										setFilter={setFilter}
 									/> */}
 
+										{/* {col.resizable === true && (
+										<div
+											// onMouseDown={() => mouseDown(index)}
+											className={`resize-handle`}
+										/>
+									)} */}
 										<div className="react-table-suite-column-icons-wrapper">
 											{/* <div className="priority-container">
 											{sort?.find(({ name }) => name === col.key)
@@ -141,12 +149,6 @@ function Table(props: TableProps) {
 												) : null}
 											</div>
 										</div>
-										{/* {col.resizable === true && (
-										<div
-											// onMouseDown={() => mouseDown(index)}
-											className={`resize-handle`}
-										/>
-									)} */}
 									</div>
 								)}
 							</React.Fragment>
@@ -154,6 +156,36 @@ function Table(props: TableProps) {
 					}
 				)}
 			</div>
+			{data.length > 0 ? (
+				<div className="react-table-suite-row-container">
+					{data.map((dataItem: any) => {
+						return (
+							<div className="react-table-suite-row" key={dataItem.id}>
+								{columns.map(({ key, minWidth, show = true }) => {
+									console.log("====================================");
+									console.log(show, dataItem, key);
+									console.log("====================================");
+									return show ? (
+										<div
+											className="react-table-suite-row-data-container"
+											key={key}
+											style={{
+												minWidth: minWidth ? `${minWidth}px` : "auto",
+											}}
+										>
+											{dataItem[key]}
+										</div>
+									) : (
+										<></>
+									);
+								})}
+							</div>
+						);
+					})}
+				</div>
+			) : (
+				<div>No Data Found</div>
+			)}
 		</div>
 	);
 }
