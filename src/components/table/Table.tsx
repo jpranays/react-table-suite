@@ -162,9 +162,6 @@ function Table(props: TableProps) {
 						return (
 							<div className="react-table-suite-row" key={dataItem.id}>
 								{columns.map(({ key, minWidth, show = true }) => {
-									console.log("====================================");
-									console.log(show, dataItem, key);
-									console.log("====================================");
 									return show ? (
 										<div
 											className="react-table-suite-row-data-container"
