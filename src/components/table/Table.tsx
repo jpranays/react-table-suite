@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSProperties } from "react";
 import "./Table.style.scss";
 import { FilterIcon, SortDownIcon, SortUpIcon } from "../../assest/icons";
 
@@ -45,7 +46,16 @@ interface Column {
 	resizable?: boolean;
 }
 type Data = Array<any>;
-
+interface Theme {
+	columnStyles?: CSSProperties;
+	rowStyles?: CSSProperties;
+	primaryColor?: string;
+	secondaryColor?: string;
+	rowHoverColor?: string;
+	rowSelectedColor?: string;
+	evenRowColor?: string;
+	oddRowColor?: string;
+}
 interface TableProps {
 	/*
 	 * Type of the table
@@ -62,10 +72,20 @@ interface TableProps {
 	 * Default: true
 	 */
 	fullWidth?: boolean;
+	theming: Theme;
 }
 
 function Table(props: TableProps) {
-	const { columns = [], data = [], type = "static", fullWidth = true } = props;
+	const {
+		columns = [],
+		data = [],
+		type = "static",
+		fullWidth = true,
+		theming = {
+			columnStyles: {},
+			rowStyles: {},
+		},
+	} = props;
 	return (
 		<div className={`react-table-suite-container ${fullWidth && "fw"}`}>
 			<div className="react-table-suite-column-container">
@@ -90,6 +110,7 @@ function Table(props: TableProps) {
 										className="react-table-suite-column"
 										style={{
 											minWidth: minWidth ? `${minWidth}px` : "auto",
+											...theming.columnStyles,
 										}}
 									>
 										<div className="react-table-suite-column-title">
@@ -160,7 +181,11 @@ function Table(props: TableProps) {
 				<div className="react-table-suite-row-container">
 					{data.map((dataItem: any) => {
 						return (
-							<div className="react-table-suite-row" key={dataItem.id}>
+							<div
+								className="react-table-suite-row"
+								key={dataItem.id}
+								style={{ ...theming.rowStyles }}
+							>
 								{columns.map(({ key, minWidth, show = true }) => {
 									return show ? (
 										<div
