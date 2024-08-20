@@ -1,7 +1,7 @@
 .react-table-suite-container {
 	display: flex;
 	flex-direction: column;
-	overflow: auto;
+	// overflow: auto;
 	width: max-content;
 	&.fw {
 		// width: 100%;
@@ -23,12 +23,14 @@
 			text-overflow: ellipsis;
 			overflow: hidden;
 			.react-table-suite-column-title {
+				text-align: inherit;
 				max-width: 100%;
 				white-space: nowrap;
 				text-overflow: ellipsis;
 				overflow: hidden;
 				padding: 0 5px;
 				width: 100%;
+				cursor: default;
 			}
 			.react-table-suite-column-icons-wrapper {
 				display: flex;
@@ -50,12 +52,15 @@
 							display: flex;
 							justify-content: center;
 							align-items: center;
+							height: 0.6rem;
+							width: 0.6rem;
 							.sort-icon {
 								display: flex;
 								justify-content: center;
 								align-items: center;
-								height: 10px;
-								width: 10px;
+								height: 100%;
+								width: 100%;
+								overflow: visible;
 								&:hover {
 									transform: scale(1.2);
 								}
@@ -75,8 +80,8 @@
 							justify-content: center;
 							align-items: center;
 							.filter-icon {
-								height: 16px;
-								width: 16px;
+								height: 0.8rem;
+								width: 0.8rem;
 								display: flex;
 								justify-content: center;
 								align-items: center;
@@ -111,7 +116,19 @@
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			overflow: hidden;
+			cursor: default;
+			background-color: var(--row-bg-color);
+			&:nth-child(odd) {
+				background-color: var(--odd-row-color);
+			}
+			&:nth-child(even) {
+				background-color: var(--even-row-color);
+			}
+			&:hover {
+				background-color: var(--row-hover-color);
+			}
 			.react-table-suite-row-data-container {
+				text-align: inherit;
 				flex: 1;
 				max-width: 100%;
 				white-space: nowrap;
@@ -120,5 +137,14 @@
 				padding: 0 5px;
 			}
 		}
+	}
+
+	&.separator {
+		.react-table-suite-column {
+			border-right: 1px solid var(--separator-color);
+		}
+        .react-table-suite-row-data-container {
+            border-right: 1px solid var(--separator-color);
+        }
 	}
 }

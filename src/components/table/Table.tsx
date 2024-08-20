@@ -51,10 +51,21 @@ interface Theme {
 	rowStyles?: CSSProperties;
 	primaryColor?: string;
 	secondaryColor?: string;
+	rowBgColor?: string;
 	rowHoverColor?: string;
 	rowSelectedColor?: string;
 	evenRowColor?: string;
 	oddRowColor?: string;
+}
+interface Separator {
+	/*
+	 * Visibility of the separator
+	 */
+	show: boolean;
+	/*
+	 * Color of the separator
+	 */
+	color: string;
 }
 interface TableProps {
 	/*
@@ -73,6 +84,7 @@ interface TableProps {
 	 */
 	fullWidth?: boolean;
 	theming: Theme;
+	separator?: Separator;
 }
 
 function Table(props: TableProps) {
@@ -81,13 +93,34 @@ function Table(props: TableProps) {
 		data = [],
 		type = "static",
 		fullWidth = true,
-		theming = {
-			columnStyles: {},
-			rowStyles: {},
+		theming = {},
+		separator = {
+			show: false,
+			color: "#",
 		},
 	} = props;
 	return (
-		<div className={`react-table-suite-container ${fullWidth && "fw"}`}>
+		<div
+			className={`react-table-suite-container ${fullWidth && "fw"} ${
+				separator.show && "separator"
+			}`}
+			style={
+				{
+					"--primary-color": theming.primaryColor || "#2684ff",
+					"--secondary-color": theming.secondaryColor || "#c4dbf9",
+					"--row-bg-color": theming.rowBgColor || "#ffffff",
+					"--row-hover-color": theming.rowHoverColor || "#e0e0e0",
+					"--row-selected-color": theming.rowSelectedColor || "#f0f0f0",
+					"--even-row-color": theming.evenRowColor
+						? theming.evenRowColor
+						: theming.rowBgColor || "#ffffff",
+					"--odd-row-color": theming.oddRowColor
+						? theming.oddRowColor
+						: theming.rowBgColor || "#ffffff",
+					"--separator-color": separator.color || "#bfbfbf",
+				} as CSSProperties
+			}
+		>
 			<div className="react-table-suite-column-container">
 				{columns.map(
 					({
