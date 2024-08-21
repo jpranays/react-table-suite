@@ -87,3 +87,38 @@ export function FilteredIcon(
 		</svg>
 	);
 }
+export function NextPageIcon(
+	props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) {
+	return (
+		<svg
+			width="20"
+			height="20"
+			viewBox="0 0 20 20"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			{...props}
+		>
+			<path
+				d="M6.99961 1L5.59961 2.5L12.9996 10L5.59961 17.5L6.99961 19L15.9996 10L6.99961 1Z"
+				fill="black"
+			/>
+		</svg>
+	);
+}
+export function PreviousPageIcon(
+	props: React.JSX.IntrinsicAttributes & React.SVGProps<SVGSVGElement>
+) {
+	return (
+		<svg
+			width="20"
+			height="20"
+			viewBox="0 0 20 20"
+			fill="none"
+			xmlns="http://www.w3.org/2000/svg"
+			{...props}
+		>
+			<path d="M4 10L13 19L14.4 17.5L7 10L14.4 2.5L13 1L4 10Z" fill="black" />
+		</svg>
+	);
+}
